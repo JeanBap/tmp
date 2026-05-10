@@ -25,7 +25,7 @@ class CsvService {
         entry.getString(KdbxKeyCommon.USER_NAME)?.getText() ?? '',
         entry.getString(KdbxKeyCommon.PASSWORD)?.getText() ?? '',
         entry.getString(KdbxKeyCommon.URL)?.getText() ?? '',
-        entry.getString(KdbxKeyCommon.NOTES)?.getText() ?? '',
+        entry.getString(KdbxKey('Notes'))?.getText() ?? '',
         entry.parent?.name.get() ?? '',
       ]);
     }
@@ -62,7 +62,9 @@ class CsvService {
       if (r.isEmpty) continue;
       String at(int idx) =>
           (idx < r.length ? r[idx].toString() : '').trim();
-      final entry = file.body.rootGroup.createEntry();
+      final parent = file.body.rootGroup;
+      final entry = KdbxEntry.create(file, parent);
+      parent.addEntry(entry);
       entry.setString(KdbxKeyCommon.TITLE, PlainValue(at(0)));
       entry.setString(KdbxKeyCommon.USER_NAME, PlainValue(at(1)));
       entry.setString(
@@ -70,7 +72,7 @@ class CsvService {
         ProtectedValue.fromString(at(2)),
       );
       entry.setString(KdbxKeyCommon.URL, PlainValue(at(3)));
-      entry.setString(KdbxKeyCommon.NOTES, PlainValue(at(4)));
+      entry.setString(KdbxKey('Notes'), PlainValue(at(4)));
       count++;
     }
     return count;

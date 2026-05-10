@@ -72,7 +72,7 @@ class PdfService {
                     'URL: ${entry.getString(KdbxKeyCommon.URL)?.getText() ?? ''}'),
             pw.Paragraph(
                 text:
-                    'Note: ${entry.getString(KdbxKeyCommon.NOTES)?.getText() ?? ''}'),
+                    'Note: ${entry.getString(KdbxKey('Notes'))?.getText() ?? ''}'),
           ],
         ),
       ),

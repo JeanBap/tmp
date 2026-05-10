@@ -64,7 +64,7 @@ class _SearchState extends ConsumerState<SearchScreen> {
     if (has(KdbxKeyCommon.TITLE)) return true;
     if (has(KdbxKeyCommon.USER_NAME)) return true;
     if (has(KdbxKeyCommon.URL)) return true;
-    if (has(KdbxKeyCommon.NOTES)) return true;
+    if (has(KdbxKey('Notes'))) return true;
     // custom fields (skip Password)
     for (final kv in e.stringEntries) {
       if (kv.key == KdbxKeyCommon.PASSWORD) continue;

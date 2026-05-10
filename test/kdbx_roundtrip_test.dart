@@ -10,7 +10,9 @@ void main() {
     final svc = KdbxService();
     final file = svc.createNew(name: 'unit-test', masterPassword: 'correct horse battery staple');
     // Aggiungi una voce
-    final entry = file.body.rootGroup.createEntry();
+    final parent = file.body.rootGroup;
+    final entry = KdbxEntry.create(file, parent);
+    parent.addEntry(entry);
     entry.setString(KdbxKeyCommon.TITLE, PlainValue('Hello'));
     entry.setString(
       KdbxKeyCommon.PASSWORD,

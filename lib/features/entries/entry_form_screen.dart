@@ -40,7 +40,7 @@ class _EntryFormState extends ConsumerState<EntryFormScreen> {
       _user.text = _existing!.getString(KdbxKeyCommon.USER_NAME)?.getText() ?? '';
       _password.text = _existing!.getString(KdbxKeyCommon.PASSWORD)?.getText() ?? '';
       _url.text = _existing!.getString(KdbxKeyCommon.URL)?.getText() ?? '';
-      _notes.text = _existing!.getString(KdbxKeyCommon.NOTES)?.getText() ?? '';
+      _notes.text = _existing!.getString(KdbxKey('Notes'))?.getText() ?? '';
       _otp.text = _existing!.getString(KdbxKey('otp'))?.getText() ?? '';
     }
   }
@@ -63,7 +63,9 @@ class _EntryFormState extends ConsumerState<EntryFormScreen> {
 
     KdbxEntry entry;
     if (_existing == null) {
-      entry = vault.file.body.rootGroup.createEntry();
+      final parent = vault.file.body.rootGroup;
+      entry = KdbxEntry.create(vault.file, parent);
+      parent.addEntry(entry);
     } else {
       entry = _existing!;
     }
@@ -74,7 +76,7 @@ class _EntryFormState extends ConsumerState<EntryFormScreen> {
       ProtectedValue.fromString(_password.text),
     );
     entry.setString(KdbxKeyCommon.URL, PlainValue(_url.text));
-    entry.setString(KdbxKeyCommon.NOTES, PlainValue(_notes.text));
+    entry.setString(KdbxKey('Notes'), PlainValue(_notes.text));
     if (_otp.text.trim().isNotEmpty) {
       entry.setString(KdbxKey('otp'), ProtectedValue.fromString(_otp.text.trim()));
     }
