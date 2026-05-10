@@ -1,0 +1,32 @@
+{
+  "@@locale": "it",
+  "appTitle": "Password Manager",
+
+  "actionUnlock": "Sblocca",
+  "actionLock": "Blocca",
+  "actionCreate": "Crea",
+  "actionOpen": "Apri",
+  "actionCancel": "Annulla",
+  "actionSave": "Salva",
+  "actionDelete": "Elimina",
+  "actionCopy": "Copia",
+
+  "onboardingTitle": "Benvenuto",
+  "onboardingSubtitle": "Il tuo vault offline-first compatibile con KeePass.",
+
+  "vaultSelectTitle": "Apri o crea un vault",
+  "vaultCreateNew": "Crea nuovo KDBX",
+  "vaultOpenExisting": "Apri KDBX esistente",
+
+  "unlockEnterMasterPassword": "Inserisci la master password",
+  "unlockBiometric": "Usa la biometria",
+
+  "errorWrongPassword": "Master password errata",
+  "errorGeneric": "Si è verificato un errore",
+
+  "settingsTitle": "Impostazioni",
+  "settingsAutoLockTimeout": "Timeout di blocco automatico",
+  "settingsClipboardClearSeconds": "Pulizia clipboard (s)",
+  "settingsTheme": "Tema",
+  "settingsLanguage": "Lingua"
+}

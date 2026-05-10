@@ -1,14 +1,47 @@
-node_modules
-dist
-dist-ssr
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Generated files
+**/*.g.dart
+**/*.freezed.dart
+**/*.mocks.dart
+lib/l10n/generated/
+
+# Coverage
+coverage/
+
+# Android
+android/.gradle/
+android/local.properties
+android/key.properties
+android/app/release/
+android/app/debug/
+android/app/profile/
+*.jks
+*.keystore
+
+# iOS (not target, but ignored to be safe)
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Env / secrets
 .env
-.env.local
-.env.*.local
-*.log
-.vite
-.wrangler
-.dev.vars
-*.tsbuildinfo
-.idea
-.vscode
+.env.*
+!.env.example
