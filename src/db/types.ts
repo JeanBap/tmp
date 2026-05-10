@@ -8,6 +8,7 @@ export interface Transaction {
   category_id: string;
   type: TransactionType;
   description?: string;
+  import_hash?: string;   // SHA-1 of (date|amount|description) — set by CSV importer for dedupe
   created_at: number;     // epoch ms
   updated_at: number;     // epoch ms — used by sync (last-write-wins)
   sync_status: SyncStatus;
