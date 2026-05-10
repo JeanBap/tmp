@@ -19,7 +19,7 @@ final _log = Logger('KdbxService');
 ///   per evitare corruzioni in caso di kill dell'app durante la scrittura.
 class KdbxService {
   KdbxService()
-      : _format = KdbxFormat(PointyCastleArgon2());
+      : _format = KdbxFormat(const PointyCastleArgon2());
 
   final KdbxFormat _format;
 
@@ -30,9 +30,9 @@ class KdbxService {
   }) {
     final credentials = Credentials(ProtectedValue.fromString(masterPassword));
     final file = _format.create(
-      credentials: credentials,
+      credentials,
+      name,
       header: KdbxHeader.createV4(),
-      databaseName: name,
     );
     _log.fine('Created new KDBX in-memory: $name');
     return file;

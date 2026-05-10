@@ -39,7 +39,7 @@ class _EntryDetailState extends ConsumerState<EntryDetailScreen> {
     final user = entry.getString(KdbxKeyCommon.USER_NAME)?.getText() ?? '';
     final password = entry.getString(KdbxKeyCommon.PASSWORD)?.getText() ?? '';
     final url = entry.getString(KdbxKeyCommon.URL)?.getText() ?? '';
-    final notes = entry.getString(KdbxKeyCommon.NOTES)?.getText() ?? '';
+    final notes = entry.getString(KdbxKey('Notes'))?.getText() ?? '';
     final otpUri = entry.getString(KdbxKey('otp'))?.getText() ??
         entry.getString(KdbxKey('TOTP Seed'))?.getText() ??
         '';
@@ -86,7 +86,7 @@ class _EntryDetailState extends ConsumerState<EntryDetailScreen> {
             _Field(
               label: k.key.key,
               value: k.value?.getText() ?? '',
-              sensitive: k.value?.isProtected ?? false,
+              sensitive: k.value is ProtectedValue,
               onCopy: () => _copy(k.value?.getText() ?? ''),
             ),
         ],
