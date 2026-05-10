@@ -22,7 +22,6 @@ dependencies:
 
   # KeePass / KDBX
   kdbx: ^2.4.2
-  argon2_ffi_base: ^1.2.2
 
   # Crypto
   pointycastle: ^3.9.1
