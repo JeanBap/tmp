@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { LayoutDashboard, Receipt, LineChart, Settings } from 'lucide-react';
 import type { ComponentType } from 'react';
 import { UserMenu } from './UserMenu';
+import { SyncStatusBadge } from '@/components/SyncStatusBadge';
 
 type NavItem = { to: string; label: string; icon: ComponentType<{ className?: string }> };
 
@@ -37,6 +38,7 @@ export function AppShell() {
             </NavLink>
           ))}
         </nav>
+        <SyncStatusBadge />
         <UserMenu />
       </aside>
 
