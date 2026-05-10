@@ -25,6 +25,11 @@ class BudgetDB extends Dexie {
       prices: '&symbol, fetched_at',
       tombstones: '&id, table, sync_status, deleted_at',
     });
+
+    // v2: add import_hash index on transactions for CSV dedupe.
+    this.version(2).stores({
+      transactions: '&id, date, type, category_id, sync_status, updated_at, import_hash',
+    });
   }
 }
 
