@@ -29,11 +29,7 @@ class KdbxService {
     required String masterPassword,
   }) {
     final credentials = Credentials(ProtectedValue.fromString(masterPassword));
-    final file = _format.create(
-      credentials,
-      name,
-      header: KdbxHeader.createV4(),
-    );
+    final file = _format.create(credentials, name);
     _log.fine('Created new KDBX in-memory: $name');
     return file;
   }
