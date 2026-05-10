@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { LayoutDashboard, Receipt, LineChart, Settings } from 'lucide-react';
 import type { ComponentType } from 'react';
+import { UserMenu } from './UserMenu';
 
 type NavItem = { to: string; label: string; icon: ComponentType<{ className?: string }> };
 
@@ -36,6 +37,7 @@ export function AppShell() {
             </NavLink>
           ))}
         </nav>
+        <UserMenu />
       </aside>
 
       <div className="flex-1 flex flex-col min-w-0">
