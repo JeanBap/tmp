@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from 'react';
 import { useAuthStore } from '@/store/useAuthStore';
+import { cloudSync } from '@/db/cloudSync';
 import { LoginPage } from './LoginPage';
 import { AccessDenied } from './AccessDenied';
 
@@ -9,6 +10,8 @@ interface Props {
 
 export function ProtectedRoute({ children }: Props) {
   const { idToken, expiresAt, isAuthenticated, isAllowed, signOut } = useAuthStore();
+  const authed = isAuthenticated();
+  const allowed = isAllowed();
 
   // Auto sign-out when the cached Google ID token expires.
   useEffect(() => {
@@ -22,7 +25,15 @@ export function ProtectedRoute({ children }: Props) {
     return () => clearTimeout(timer);
   }, [idToken, expiresAt, signOut]);
 
-  if (!isAuthenticated()) return <LoginPage />;
-  if (!isAllowed()) return <AccessDenied />;
+  // Start cloud sync only when fully authorised; stop when user signs out.
+  useEffect(() => {
+    if (authed && allowed) {
+      cloudSync.start();
+      return () => cloudSync.stop();
+    }
+  }, [authed, allowed]);
+
+  if (!authed) return <LoginPage />;
+  if (!allowed) return <AccessDenied />;
   return <>{children}</>;
 }
